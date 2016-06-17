@@ -85,3 +85,4 @@ export LANG=en_US.UTF-8
 
 export TERM=xterm-256color
 DEFAULT_USER=apelsinet
+alias tmas="tmux attach-session"
