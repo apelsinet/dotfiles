@@ -1,0 +1,7 @@
+[user]
+	name = apelsinet
+	email = mattiasprada@gmail.com
+[color]
+	ui = auto
+[core]
+	excludesfile = /home/apelsinet/.gitignore
