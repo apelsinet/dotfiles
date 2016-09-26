@@ -15,6 +15,9 @@ Plugin 'vim-airline/vim-airline-themes'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'scrooloose/syntastic'
 Plugin 'edkolev/tmuxline.vim'
+Plugin 'digitaltoad/vim-pug'
+Plugin 'pangloss/vim-javascript'
+Plugin 'elzr/vim-json'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
