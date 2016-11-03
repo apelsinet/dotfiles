@@ -1,6 +1,8 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
 syntax on
+set t_Co=256
+set autoindent
 
 " git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 " set the runtime path to include Vundle and initialize
@@ -9,14 +11,18 @@ call vundle#begin()
 
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
-Plugin 'fcpg/vim-fahrenheit'
+" Plugin 'fcpg/vim-fahrenheit'
+Plugin 'alessandroyorba/despacio'
+" Plugin 'morhetz/gruvbox'
+" Plugin 'crusoexia/vim-monokai'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'scrooloose/syntastic'
 Plugin 'edkolev/tmuxline.vim'
 Plugin 'digitaltoad/vim-pug'
-Plugin 'pangloss/vim-javascript'
+Plugin 'jelera/vim-javascript-syntax'
+Plugin 'mxw/vim-jsx'
 Plugin 'elzr/vim-json'
 
 " All of your Plugins must be added before the following line
@@ -33,17 +39,20 @@ set shiftwidth=2
 set tabstop=2
 set expandtab
 
-colorscheme fahrenheit
+colorscheme despacio
+set background=light
 
 set relativenumber
 
 " Always show status bar
 set laststatus=2
 
-let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
+let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git\|.jpg'
 
-" Use patched fonts
+" Vim airline
 let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_theme='wombat'
 
 " NerdTree style file explorer
 let g:netrw_liststyle=3
@@ -60,3 +69,8 @@ let g:syntastic_check_on_wq = 0
 let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_javascript_eslint_exec = 'eslint_d'
 
+" JSX highlighting also in .js files
+let g:jsx_ext_required = 0
+
+" Always rewrite original on save, for better webpack watching
+set backupcopy=yes
