@@ -4,6 +4,7 @@ syntax on
 set t_Co=256
 set autoindent
 
+
 " git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
