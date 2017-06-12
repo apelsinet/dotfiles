@@ -1,17 +1,23 @@
-set nocompatible              " be iMproved, required
-filetype off                  " required
+"  █████╗ ██████╗ ███████╗██╗     ███████╗██╗███╗   ██╗███████╗████████╗
+" ██╔══██╗██╔══██╗██╔════╝██║     ██╔════╝██║████╗  ██║██╔════╝╚══██╔══╝
+" ███████║██████╔╝█████╗  ██║     ███████╗██║██╔██╗ ██║█████╗     ██║
+" ██╔══██║██╔═══╝ ██╔══╝  ██║     ╚════██║██║██║╚██╗██║██╔══╝     ██║
+" ██║  ██║██║     ███████╗███████╗███████║██║██║ ╚████║███████╗   ██║
+" ╚═╝  ╚═╝╚═╝     ╚══════╝╚══════╝╚══════╝╚═╝╚═╝  ╚═══╝╚══════╝   ╚═╝
+
+set nocompatible
+filetype off
 syntax on
 set t_Co=256
 set autoindent
 
-" git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-" set the runtime path to include Vundle and initialize
+" Set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
-" let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'alessandroyorba/despacio'
+" Plugin 'rakr/vim-two-firewatch'
 " Plugin 'fcpg/vim-fahrenheit'
 " Plugin 'morhetz/gruvbox'
 " Plugin 'crusoexia/vim-monokai'
@@ -30,23 +36,27 @@ Plugin 'elzr/vim-json'
 Plugin 'hail2u/vim-css3-syntax'
 Plugin 'cakebaker/scss-syntax.vim'
 Plugin 'junegunn/goyo.vim'
+Plugin 'haya14busa/incsearch.vim'
+Plugin 'xolox/vim-misc'
+Plugin 'xolox/vim-easytags'
+Plugin 'mbbill/undotree'
 
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
+call vundle#end()
+filetype plugin indent on
 
 " :PluginList       - lists configured plugins
 " :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
 " :PluginSearch foo - searches for foo; append `!` to refresh local cache
 " :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
 
 " File specific indentation
 autocmd Filetype html setlocal ts=2 sts=2 sw=2 expandtab
 autocmd Filetype css setlocal ts=2 sts=2 sw=2 expandtab
 autocmd Filetype scss setlocal ts=2 sts=2 sw=2 expandtab
 autocmd Filetype javascript setlocal ts=2 sts=2 sw=2 expandtab
+autocmd Filetype json setlocal ts=2 sts=2 sw=2 expandtab
 autocmd Filetype python setlocal ts=4 sts=4 sw=4 expandtab
+autocmd Filetype cpp setlocal ts=4 sts=4 sw=4 expandtab
 " Work specific indendation
 autocmd BufNewFile,BufRead ~/w/* setlocal ts=4 sts=4 sw=4 expandtab
 
@@ -54,8 +64,9 @@ colorscheme despacio
 set background=light
 
 set relativenumber
+set scrolloff=5
 
-set colorcolumn=80
+set colorcolumn=80,100
 
 " Always show status bar
 set laststatus=2
@@ -65,7 +76,7 @@ let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git\|.jpg'
 " Vim airline
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
-let g:airline_theme='wombat'
+let g:airline_theme='base16color'
 
 call airline#parts#define_function('ALE', 'ALEGetStatusLine')
 call airline#parts#define_condition('ALE', 'exists("*ALEGetStatusLine")')
@@ -75,7 +86,6 @@ let g:ale_statusline_format = ['⨉ %d', '⚠ %d', '']
 let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
-let g:syntastic_javascript_eslint_exec = 'eslint_d'
 
 " JSX highlighting also in .js files
 let g:jsx_ext_required = 0
@@ -83,12 +93,8 @@ let g:jsx_ext_required = 0
 " Always rewrite original on save, for better webpack watching
 set backupcopy=yes
 
-" Remaps
-map <C-n> :NERDTreeToggle<CR>
-nnoremap <Tab> :bnext<CR>
-nnoremap <S-Tab> :bprevious<CR>
-
 let g:NERDTreeQuitOnOpen = 1
+let NERDTreeIgnore = ['\.pyc$']
 
 " Goyo specific
 function! s:goyo_enter()
@@ -114,3 +120,17 @@ autocmd! User GoyoLeave nested call <SID>goyo_leave()
 
 " Dont use preview scratch window
 set completeopt-=preview
+
+" Setup persistent undo directory
+set undodir=~/.undodir/
+set undofile
+
+" Remaps
+map <C-n> :NERDTreeToggle<CR>
+map <S-n> :UndotreeToggle<CR>
+nnoremap <Tab> :bnext!<CR>
+nnoremap <S-Tab> :bprevious!<CR>
+map /  <Plug>(incsearch-forward)
+map ?  <Plug>(incsearch-backward)
+map g/ <Plug>(incsearch-stay)
+

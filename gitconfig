@@ -4,4 +4,5 @@
 [color]
 	ui = auto
 [core]
-	excludesfile = /home/apelsinet/.gitignore
+	excludesfile = /Users/apelsinet/.gitignore
+	editor = mvim -f -v
