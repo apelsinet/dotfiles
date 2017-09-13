@@ -19,8 +19,7 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'alessandroyorba/despacio'
 " Plugin 'rakr/vim-two-firewatch'
 " Plugin 'fcpg/vim-fahrenheit'
-" Plugin 'morhetz/gruvbox'
-" Plugin 'crusoexia/vim-monokai'
+Plugin 'morhetz/gruvbox'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'ctrlpvim/ctrlp.vim'
@@ -30,15 +29,13 @@ Plugin 'Valloric/YouCompleteMe'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'edkolev/tmuxline.vim'
 Plugin 'digitaltoad/vim-pug'
-Plugin 'jelera/vim-javascript-syntax'
-Plugin 'mxw/vim-jsx'
+Plugin 'neoclide/vim-jsx-improve'
 Plugin 'elzr/vim-json'
 Plugin 'hail2u/vim-css3-syntax'
 Plugin 'cakebaker/scss-syntax.vim'
 Plugin 'junegunn/goyo.vim'
 Plugin 'haya14busa/incsearch.vim'
 Plugin 'xolox/vim-misc'
-Plugin 'xolox/vim-easytags'
 Plugin 'mbbill/undotree'
 
 call vundle#end()
@@ -60,13 +57,14 @@ autocmd Filetype cpp setlocal ts=4 sts=4 sw=4 expandtab
 " Work specific indendation
 autocmd BufNewFile,BufRead ~/w/* setlocal ts=4 sts=4 sw=4 expandtab
 
-colorscheme despacio
-set background=light
+colorscheme gruvbox
+set background=dark
 
 set relativenumber
 set scrolloff=5
 
 set colorcolumn=80,100
+set cursorline
 
 " Always show status bar
 set laststatus=2
@@ -76,7 +74,9 @@ let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git\|.jpg'
 " Vim airline
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
-let g:airline_theme='base16color'
+" Airline theme for despacio:
+" let g:airline_theme='base16color'
+let g:airline_theme='gruvbox'
 
 call airline#parts#define_function('ALE', 'ALEGetStatusLine')
 call airline#parts#define_condition('ALE', 'exists("*ALEGetStatusLine")')
@@ -86,6 +86,9 @@ let g:ale_statusline_format = ['⨉ %d', '⚠ %d', '']
 let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+let g:ale_fixers = {}
+let g:ale_fixers['javascript'] = ['prettier']
+let g:ale_javascript_prettier_options = '--single-quote --tab-width 4'
 
 " JSX highlighting also in .js files
 let g:jsx_ext_required = 0
@@ -133,4 +136,4 @@ nnoremap <S-Tab> :bprevious!<CR>
 map /  <Plug>(incsearch-forward)
 map ?  <Plug>(incsearch-backward)
 map g/ <Plug>(incsearch-stay)
-
+nnoremap <leader>g :YcmCompleter GoTo<CR>
