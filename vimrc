@@ -16,9 +16,8 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 Plugin 'VundleVim/Vundle.vim'
-Plugin 'alessandroyorba/despacio'
-" Plugin 'rakr/vim-two-firewatch'
-" Plugin 'fcpg/vim-fahrenheit'
+" Plugin 'alessandroyorba/despacio'
+" Plugin 'mhartington/oceanic-next'
 Plugin 'morhetz/gruvbox'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
@@ -27,16 +26,13 @@ Plugin 'w0rp/ale'
 Plugin 'scrooloose/nerdtree'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
+Plugin 'airblade/vim-gitgutter'
 Plugin 'edkolev/tmuxline.vim'
-Plugin 'digitaltoad/vim-pug'
-Plugin 'neoclide/vim-jsx-improve'
-Plugin 'elzr/vim-json'
-Plugin 'hail2u/vim-css3-syntax'
-Plugin 'cakebaker/scss-syntax.vim'
-Plugin 'junegunn/goyo.vim'
 Plugin 'haya14busa/incsearch.vim'
-Plugin 'xolox/vim-misc'
 Plugin 'mbbill/undotree'
+Plugin 'othree/yajs.vim'
+Plugin 'mxw/vim-jsx'
+Plugin 'tomtom/tcomment_vim'
 
 call vundle#end()
 filetype plugin indent on
@@ -50,7 +46,7 @@ filetype plugin indent on
 autocmd Filetype html setlocal ts=2 sts=2 sw=2 expandtab
 autocmd Filetype css setlocal ts=2 sts=2 sw=2 expandtab
 autocmd Filetype scss setlocal ts=2 sts=2 sw=2 expandtab
-autocmd Filetype javascript setlocal ts=2 sts=2 sw=2 expandtab
+autocmd Filetype javascript setlocal ts=4 sts=4 sw=4 expandtab
 autocmd Filetype json setlocal ts=2 sts=2 sw=2 expandtab
 autocmd Filetype python setlocal ts=4 sts=4 sw=4 expandtab
 autocmd Filetype cpp setlocal ts=4 sts=4 sw=4 expandtab
@@ -88,7 +84,7 @@ let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 let g:ale_fixers = {}
 let g:ale_fixers['javascript'] = ['prettier']
-let g:ale_javascript_prettier_options = '--single-quote --tab-width 4'
+let g:ale_javascript_prettier_options = '--single-quote --tab-width 4 --trailing-comma all'
 
 " JSX highlighting also in .js files
 let g:jsx_ext_required = 0
@@ -98,28 +94,6 @@ set backupcopy=yes
 
 let g:NERDTreeQuitOnOpen = 1
 let NERDTreeIgnore = ['\.pyc$']
-
-" Goyo specific
-function! s:goyo_enter()
-  silent !tmux set status off
-  silent !tmux list-panes -F '\#F' | grep -q Z || tmux resize-pane -Z
-  set noshowmode
-  set noshowcmd
-  set scrolloff=999
-  " ...
-endfunction
-
-function! s:goyo_leave()
-  silent !tmux set status on
-  silent !tmux list-panes -F '\#F' | grep -q Z && tmux resize-pane -Z
-  set showmode
-  set showcmd
-  set scrolloff=5
-  " ...
-endfunction
-
-autocmd! User GoyoEnter nested call <SID>goyo_enter()
-autocmd! User GoyoLeave nested call <SID>goyo_leave()
 
 " Dont use preview scratch window
 set completeopt-=preview
@@ -137,3 +111,13 @@ map /  <Plug>(incsearch-forward)
 map ?  <Plug>(incsearch-backward)
 map g/ <Plug>(incsearch-stay)
 nnoremap <leader>g :YcmCompleter GoTo<CR>
+nnoremap <leader>ff :ALEFix<CR>
+nnoremap <leader>ss :so ~/.vimrc<CR>
+
+" Yank to mac clipboard
+set clipboard=unnamed
+set ttyfast " u got a fast terminal
+set synmaxcol=128
+
+set guioptions=
+set guifont=mononoki:h16
