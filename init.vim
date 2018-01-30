@@ -10,6 +10,7 @@ call plug#begin('~/.local/share/nvim/plugged')
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'ctrlpvim/ctrlp.vim', { 'on': 'CtrlP' }
+Plug 'mbbill/undotree', { 'on': 'UntotreeToggle' }
 Plug 'haya14busa/incsearch.vim'
 Plug 'morhetz/gruvbox'
 Plug 'tomtom/tcomment_vim'
@@ -48,14 +49,13 @@ autocmd BufNewFile,BufRead ~/w/* setlocal ts=4 sts=4 sw=4 expandtab
 
 " Remaps
 map <C-n> :NERDTreeToggle<CR>
-" map <S-n> :UndotreeToggle<CR>
+map <S-n> :UndotreeToggle<CR>
 map <C-p> :CtrlP<CR>
 nnoremap <Tab> :bnext!<CR>
 nnoremap <S-Tab> :bprevious!<CR>
 map /  <Plug>(incsearch-forward)
 map ?  <Plug>(incsearch-backward)
 map g/ <Plug>(incsearch-stay)
-" nnoremap <leader>g :YcmCompleter GoTo<CR>
 nnoremap <leader>ff :ALEFix<CR>
 nnoremap <leader>ss :so ~/.config/nvim/init.vim<CR>
 
