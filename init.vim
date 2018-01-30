@@ -21,6 +21,7 @@ Plug 'w0rp/ale'
 Plug 'chemzqm/vim-jsx-improve'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'airblade/vim-gitgutter'
+Plug 'ludovicchabant/vim-gutentags'
 call plug#end()
 
 " Colors

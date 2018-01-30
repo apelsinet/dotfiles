@@ -23,3 +23,8 @@ node_modules
 
 # Visual studio code
 .vscode/
+
+# Ctags
+tags.lock
+tags.temp
+tags
