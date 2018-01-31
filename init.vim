@@ -6,11 +6,14 @@
 " ╚═╝  ╚═╝╚═╝     ╚══════╝╚══════╝╚══════╝╚═╝╚═╝  ╚═══╝╚══════╝   ╚═╝
 
 set t_Co=256
+syntax enable
 call plug#begin('~/.local/share/nvim/plugged')
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-Plug 'ctrlpvim/ctrlp.vim', { 'on': 'CtrlP' }
-Plug 'mbbill/undotree', { 'on': 'UntotreeToggle' }
+" fzf requires 'brew install fzf'
+Plug '/usr/local/opt/fzf'
+Plug 'junegunn/fzf.vim'
+Plug 'mbbill/undotree'
 Plug 'haya14busa/incsearch.vim'
 Plug 'morhetz/gruvbox'
 Plug 'tomtom/tcomment_vim'
@@ -51,7 +54,8 @@ autocmd BufNewFile,BufRead ~/w/* setlocal ts=4 sts=4 sw=4 expandtab
 " Remaps
 map <C-n> :NERDTreeToggle<CR>
 map <S-n> :UndotreeToggle<CR>
-map <C-p> :CtrlP<CR>
+map <C-p> :FZF<CR>
+map <leader>a :Ag<CR>
 nnoremap <Tab> :bnext!<CR>
 nnoremap <S-Tab> :bprevious!<CR>
 map /  <Plug>(incsearch-forward)
@@ -66,9 +70,6 @@ let g:deoplete#enable_at_startup = 1
 " NerdTree
 let g:NERDTreeQuitOnOpen = 1
 let NERDTreeIgnore = ['\.pyc$']
-
-" Ctrl-P
-let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git\|.jpg'
 
 " Vim airline
 let g:airline#extensions#tabline#enabled = 1

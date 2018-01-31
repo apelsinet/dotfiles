@@ -35,6 +35,8 @@ padding:
 dpi:
   x: 227.0
   y: 227.0
+  # x: 170.0
+  # y: 170.0
 
 # Display tabs using this many cells (changes require restart)
 tabspaces: 8
