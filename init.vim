@@ -23,6 +23,7 @@ Plug 'edkolev/tmuxline.vim'
 Plug 'w0rp/ale'
 Plug 'chemzqm/vim-jsx-improve'
 Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 Plug 'ludovicchabant/vim-gutentags'
 call plug#end()
@@ -58,6 +59,7 @@ map <C-p> :FZF<CR>
 map <leader>a :Ag<CR>
 nnoremap <Tab> :bnext!<CR>
 nnoremap <S-Tab> :bprevious!<CR>
+nnoremap <leader>x :bd<CR>
 map /  <Plug>(incsearch-forward)
 map ?  <Plug>(incsearch-backward)
 map g/ <Plug>(incsearch-stay)
