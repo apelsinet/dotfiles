@@ -54,7 +54,7 @@ autocmd BufNewFile,BufRead ~/w/* setlocal ts=4 sts=4 sw=4 expandtab
 
 " Remaps
 map <C-n> :NERDTreeToggle<CR>
-map <S-n> :UndotreeToggle<CR>
+map <leader>u :UndotreeToggle<CR>
 map <C-p> :FZF<CR>
 map <leader>a :Ag<CR>
 nnoremap <Tab> :bnext!<CR>
@@ -65,6 +65,12 @@ map ?  <Plug>(incsearch-backward)
 map g/ <Plug>(incsearch-stay)
 nnoremap <leader>ff :ALEFix<CR>
 nnoremap <leader>ss :so ~/.config/nvim/init.vim<CR>
+nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+nmap <silent> <C-j> <Plug>(ale_next_wrap)
+" use tab to forward cycle
+inoremap <silent><expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+" use tab to backward cycle
+inoremap <silent><expr><s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
 
 " Deoplete
 let g:deoplete#enable_at_startup = 1
@@ -82,6 +88,8 @@ call airline#parts#define_function('ALE', 'ALEGetStatusLine')
 call airline#parts#define_condition('ALE', 'exists("*ALEGetStatusLine")')
 let g:airline_section_error = airline#section#create_right(['ALE'])
 let g:ale_statusline_format = ['⨉ %d', '⚠ %d', '']
+let g:ale_sign_error = '🔥'
+let g:ale_sign_warning = '💩'
 let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
