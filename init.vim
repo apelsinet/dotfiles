@@ -24,8 +24,6 @@ Plug 'junegunn/fzf.vim'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'mbbill/undotree'
 Plug 'haya14busa/incsearch.vim'
-" Plug 'mhartington/oceanic-next'
-" Plug 'morhetz/gruvbox'
 Plug 'apelsinet/gruvbox'
 Plug 'tomtom/tcomment_vim'
 Plug 'vim-airline/vim-airline'
@@ -44,11 +42,9 @@ Plug 'airblade/vim-gitgutter'
 Plug 'ludovicchabant/vim-gutentags'
 call plug#end()
 
+" Colors
 let g:gruvbox_italicize_comments=1
 let g:gruvbox_italic=1
-" Colors
-" colorscheme OceanicNext
-" colorscheme apelsinet-next
 colorscheme gruvbox
 set background=dark
 
@@ -131,6 +127,10 @@ let g:jsx_ext_required = 0
 
 " Always rewrite original on save, for better webpack watching
 set backupcopy=yes
+
+" Setup persistent undo directory
+set undodir=~/.undodir/
+set undofile
 
 " Make vim background transparent, gets rid of tearing in tmux
 autocmd BufEnter * highlight Normal guibg=0
