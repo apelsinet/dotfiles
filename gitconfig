@@ -5,4 +5,4 @@
 	ui = auto
 [core]
 	excludesfile = /Users/apelsinet/.gitignore
-	editor = mvim -f -v
+	editor = nvim
