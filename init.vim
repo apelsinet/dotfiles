@@ -54,9 +54,16 @@ set colorcolumn=80,100
 set autoindent
 set number
 set nowrap
-
+set signcolumn=yes
+set numberwidth=5
+" hid hides inactive buffers instead of de-loading them
+set hid
 " Always show status bar
 set laststatus=2
+
+
+" Make vim background transparent, gets rid of tearing in tmux
+autocmd BufEnter * highlight Normal guibg=0
 
 " File specific indentation
 autocmd Filetype html setlocal ts=2 sts=2 sw=2 expandtab
@@ -74,11 +81,13 @@ map <C-n> :NERDTreeToggle<CR>
 map <leader>u :UndotreeToggle<CR>
 map <C-p> :FZF<CR>
 map <leader>a :Ag<CR>
+
 map <leader>e :!estilo render<CR><CR>:so ~/.config/nvim/init.vim<CR>
 noremap <C-j> <C-w>j
 noremap <C-k> <C-w>k
 noremap <C-l> <C-w>l
 noremap <C-h> <C-w>h
+nnoremap <leader>d <C-]>
 nnoremap <Tab> :bnext!<CR>
 nnoremap <S-Tab> :bprevious!<CR>
 nnoremap <leader>x :bp\|bd #<CR>
@@ -120,7 +129,7 @@ let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 let g:ale_fixers = {}
 let g:ale_fixers['javascript'] = ['prettier']
-let g:ale_javascript_prettier_options = '--single-quote --tab-width 4 --trailing-comma all'
+let g:ale_javascript_prettier_options = '--single-quote --tab-width 4 --trailing-comma all --use-tabs false'
 
 " Vim-jsx
 let g:jsx_ext_required = 0
@@ -131,6 +140,3 @@ set backupcopy=yes
 " Setup persistent undo directory
 set undodir=~/.undodir/
 set undofile
-
-" Make vim background transparent, gets rid of tearing in tmux
-autocmd BufEnter * highlight Normal guibg=0
