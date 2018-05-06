@@ -35,11 +35,13 @@ Plug 'hail2u/vim-css3-syntax'
 Plug 'cakebaker/scss-syntax.vim'
 Plug 'othree/yajs.vim'
 Plug 'mxw/vim-jsx'
+Plug 'avakhov/vim-yaml'
 Plug 'Glench/Vim-Jinja2-Syntax'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 Plug 'ludovicchabant/vim-gutentags'
+Plug 'janko-m/vim-test'
 call plug#end()
 
 " Colors
@@ -60,6 +62,7 @@ set numberwidth=5
 set hid
 " Always show status bar
 set laststatus=2
+" set lazyredraw
 
 
 " Make vim background transparent, gets rid of tearing in tmux
@@ -71,6 +74,7 @@ autocmd Filetype css setlocal ts=2 sts=2 sw=2 expandtab
 autocmd Filetype scss setlocal ts=2 sts=2 sw=2 expandtab
 autocmd Filetype javascript setlocal ts=4 sts=4 sw=4 expandtab
 autocmd Filetype json setlocal ts=2 sts=2 sw=2 expandtab
+autocmd Filetype yaml setlocal ts=2 sts=2 sw=2 expandtab
 autocmd Filetype python setlocal ts=4 sts=4 sw=4 expandtab
 autocmd Filetype cpp setlocal ts=4 sts=4 sw=4 expandtab
 " Work specific indendation
@@ -104,6 +108,7 @@ nmap <leader>h :split<CR>
 inoremap <silent><expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 " use tab to backward cycle
 inoremap <silent><expr><s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
+vnoremap // y/<C-R>"<CR>
 
 " Deoplete
 let g:deoplete#enable_at_startup = 1
@@ -127,8 +132,13 @@ let g:ale_sign_warning = '💩'
 let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+let g:ale_linters = {
+\   'javascript': ['eslint'],
+\   'python': ['flake8'],
+\}
 let g:ale_fixers = {}
 let g:ale_fixers['javascript'] = ['prettier']
+let g:ale_fixers['json'] = ['prettier']
 let g:ale_javascript_prettier_options = '--single-quote --tab-width 4 --trailing-comma all --use-tabs false'
 
 " Vim-jsx
