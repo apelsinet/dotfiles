@@ -22,18 +22,19 @@ env:
   # Compile it, with command: tic xterm-256color-italic.terminfo
   TERM: xterm-256color-italic
 
-# Window dimensions in character columns and lines
-# (changes require restart)
-dimensions:
-  columns: 80
-  lines: 36
+window:
+  # Window dimensions in character columns and lines
+  # (changes require restart)
+  dimensions:
+    columns: 80
+    lines: 36
 
-# Adds this many blank pixels of padding around the window
-# Units are physical pixels; this is not DPI aware.
-# (change requires restart)
-padding:
-  x: 2
-  y: 2
+  # Adds this many blank pixels of padding around the window
+  # Units are physical pixels; this is not DPI aware.
+  # (change requires restart)
+  padding:
+    x: 2
+    y: 2
 
 # The FreeType rasterizer needs to know the device DPI for best results
 # (changes require restart)
@@ -42,10 +43,10 @@ padding:
 #   y: 96.0
 
 dpi:
-  # x: 227.0
-  # y: 227.0
-  x: 170.0
-  y: 170.0
+  x: 227.0
+  y: 227.0
+  # x: 170.0
+  # y: 170.0
 
 # Display tabs using this many cells (changes require restart)
 tabspaces: 8
@@ -57,37 +58,40 @@ draw_bold_text_with_bright_colors: true
 font:
   # The normal (roman) font face to use.
   normal:
-    family: mononoki
+    # family: mononoki
+    family: Akkurat-Mono
     # Style can be specified to pick a specific face.
     style: Regular
 
   # The bold font face
   bold:
-    family: mononoki
+    # family: mononoki
+    family: Akkurat-Mono
     # Style can be specified to pick a specific face.
     style: Bold
 
   # The italic font face
   italic:
-    family: mononoki
+    # family: mononoki
+    family: Akkurat-Mono
     # Style can be specified to pick a specific face.
     style: Italic
 
   # Point size of the font
-  size: 16.0
+  size: 20.0
 
   # Offset is the extra space around each character. offset.y can be thought of
   # as modifying the linespacing, and offset.x as modifying the letter spacing.
   offset:
-    x: 0.0
-    y: 0.0
+    x: 0
+    y: 0
 
   # Glyph offset determines the locations of the glyphs within their cells with
   # the default being at the bottom. Increase the x offset to move the glyph to
   # the right, increase the y offset to move the glyph upward.
   glyph_offset:
-    x: 0.0
-    y: 0.0
+    x: 0
+    y: 0
 
   # OS X only: use thin stroke font rendering. Thin strokes are suitable
   # for retina displays, but for non-retina you probably want this set to
@@ -97,21 +101,22 @@ font:
 # Should display the render timer
 render_timer: false
 
-# Use custom cursor colors. If true, display the cursor in the cursor.foreground
-# and cursor.background colors, otherwise invert the colors of the cursor.
-custom_cursor_colors: false
-
 # Colors (Tomorrow Night Bright)
 colors:
   # Default colors
   # primary:
   #   background: '0x000000'
   #   foreground: '0xeaeaea'
+  #
+  # Monotone Default colors
+  primary:
+    background: '0x141210'
+    foreground: '0xD0D0D0'
 
   # Gruvbox Default colors
-  primary:
-    background: '0x282828'
-    foreground: '0xebdbb2'
+  # primary:
+  #   background: '0x282828'
+  #   foreground: '0xebdbb2'
 
   # Oceanic Next Default colors
   # primary:
@@ -348,11 +353,11 @@ mouse_bindings:
 mouse:
   double_click: { threshold: 300 }
   triple_click: { threshold: 300 }
+  hide_when_typing: true
 
 selection:
   semantic_escape_chars: ",│`|:\"' ()[]{}<>"
 
-hide_cursor_when_typing: true
 
 # Live config reload (changes require restart)
 live_config_reload: true

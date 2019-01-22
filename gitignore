@@ -27,4 +27,5 @@ node_modules
 # Ctags
 tags.lock
 tags.temp
+tags.temp.tmp
 tags

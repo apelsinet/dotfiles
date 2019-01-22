@@ -7,12 +7,14 @@ export ZSH=/Users/apelsinet/.oh-my-zsh
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="agnoster"
+ZSH_THEME=""
 
 plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
 
+autoload -U promptinit; promptinit
+prompt pure
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -58,19 +60,35 @@ alias vim="nvim"
 alias svim="sudo nvim"
 
 # ES server shortcuts
-alias pyb="workon es_services && python ~/w/Epidemic-Music-Server/services/src/manage.py runserver 127.0.0.1:8002"
+alias pyb="cd ~/w/Epidemic-Music-Server/services/src/ && pipenv run python manage.py runserver 8001"
 alias pya="workon es_activity && python ~/w/activity-service/run.py"
-alias pyf="workon es_frontend && python ~/w/Epidemic-Music-Server/frontend/src/frontend/manage.py runserver 127.0.0.1:8001"
-alias reactf="workon es_frontend && cd ~/w/Epidemic-Music-Server/homepage && npm start"
+alias pyf="cd ~/w/Epidemic-Music-Server/frontend/src/ && pipenv run python manage.py runserver 8002"
+alias reactf="cd ~/w/Epidemic-Music-Server/homepage && npm start"
 
 # export PATH="$PATH:`yarn global bin`"
 
 function s { grep -r "$1" . --color; }
+
+
+
 # eval "$(_TMUXP_COMPLETE=source tmuxp)"
 alias work="tmuxp load work"
+
+alias t="todolist"
+
+
+
+
 function jupyter() {
 	docker run -i -t -p 8888:8888 continuumio/anaconda3 /bin/bash -c "/opt/conda/bin/conda install jupyter -y --quiet && mkdir /opt/notebooks && /opt/conda/bin/jupyter notebook --notebook-dir=/opt/notebooks --ip='*' --port=8888 --no-browser --allow-root"
 }
 
 source ~/aws_credentials.zsh
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
+
+
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+export PATH="$HOME/Library/Python/2.7/bin:$PATH"
+export PATH="/usr/local/opt/mysql@5.7/bin:$PATH"
+export LDFLAGS="-L/usr/local/opt/mysql@5.7/lib"
+export CPPFLAGS="-I/usr/local/opt/mysql@5.7/include"

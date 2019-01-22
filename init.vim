@@ -25,15 +25,19 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'mbbill/undotree'
 Plug 'haya14busa/incsearch.vim'
 Plug 'apelsinet/gruvbox'
+Plug 'apelsinet/vim-monotone'
 Plug 'tomtom/tcomment_vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-" Plug 'edkolev/tmuxline.vim'
+Plug 'edkolev/tmuxline.vim'
 Plug 'w0rp/ale'
 Plug 'othree/html5.vim'
 Plug 'hail2u/vim-css3-syntax'
-Plug 'cakebaker/scss-syntax.vim'
+" Plug 'cakebaker/scss-syntax.vim'
 Plug 'othree/yajs.vim'
+Plug 'HerringtonDarkholme/yats.vim'
+Plug 'jason0x43/vim-js-indent'
+Plug 'Quramy/tsuquyomi'
 Plug 'mxw/vim-jsx'
 Plug 'avakhov/vim-yaml'
 Plug 'Glench/Vim-Jinja2-Syntax'
@@ -41,14 +45,15 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 Plug 'ludovicchabant/vim-gutentags'
-Plug 'janko-m/vim-test'
+" Plug 'janko-m/vim-test'
 call plug#end()
 
 " Colors
-let g:gruvbox_italicize_comments=1
-let g:gruvbox_italic=1
-colorscheme gruvbox
+" let g:gruvbox_italicize_comments=1
+" let g:gruvbox_italic=1
+" colorscheme gruvbox
 set background=dark
+colorscheme monotone
 
 " Editor
 set scrolloff=5
@@ -73,6 +78,7 @@ autocmd Filetype html setlocal ts=2 sts=2 sw=2 expandtab
 autocmd Filetype css setlocal ts=2 sts=2 sw=2 expandtab
 autocmd Filetype scss setlocal ts=2 sts=2 sw=2 expandtab
 autocmd Filetype javascript setlocal ts=4 sts=4 sw=4 expandtab
+autocmd Filetype typescript setlocal ts=4 sts=4 sw=4 expandtab
 autocmd Filetype json setlocal ts=2 sts=2 sw=2 expandtab
 autocmd Filetype yaml setlocal ts=2 sts=2 sw=2 expandtab
 autocmd Filetype python setlocal ts=4 sts=4 sw=4 expandtab
@@ -109,6 +115,10 @@ inoremap <silent><expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 " use tab to backward cycle
 inoremap <silent><expr><s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
 vnoremap // y/<C-R>"<CR>
+" if has('nvim')
+"   tnoremap <Esc> <C-\><C-n>
+"   tnoremap <C-v><Esc> <Esc>
+" endif
 
 " Deoplete
 let g:deoplete#enable_at_startup = 1
@@ -120,7 +130,8 @@ let NERDTreeIgnore = ['\.pyc$']
 " Vim airline
 " let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
-let g:airline_theme='gruvbox'
+" let g:airline_theme='gruvbox'
+let g:airline_theme='minimalist'
 
 " ALE
 call airline#parts#define_function('ALE', 'ALEGetStatusLine')
@@ -138,7 +149,9 @@ let g:ale_linters = {
 \}
 let g:ale_fixers = {}
 let g:ale_fixers['javascript'] = ['prettier']
+let g:ale_fixers['typescript'] = ['prettier']
 let g:ale_fixers['json'] = ['prettier']
+let g:ale_fixers['css'] = ['prettier']
 let g:ale_javascript_prettier_options = '--single-quote --tab-width 4 --trailing-comma all --use-tabs false'
 
 " Vim-jsx
