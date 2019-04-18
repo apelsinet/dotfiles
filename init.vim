@@ -24,7 +24,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'mbbill/undotree'
 Plug 'haya14busa/incsearch.vim'
-Plug 'apelsinet/gruvbox'
+" Plug 'apelsinet/gruvbox'
 Plug 'apelsinet/vim-monotone'
 Plug 'tomtom/tcomment_vim'
 Plug 'vim-airline/vim-airline'
@@ -45,6 +45,7 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 Plug 'ludovicchabant/vim-gutentags'
+" Plug 'vim-vdebug/vdebug'
 " Plug 'janko-m/vim-test'
 call plug#end()
 
@@ -92,12 +93,17 @@ map <leader>u :UndotreeToggle<CR>
 map <C-p> :FZF<CR>
 map <leader>a :Ag<CR>
 
-map <leader>e :!estilo render<CR><CR>:so ~/.config/nvim/init.vim<CR>
 noremap <C-j> <C-w>j
 noremap <C-k> <C-w>k
 noremap <C-l> <C-w>l
 noremap <C-h> <C-w>h
 nnoremap <leader>d <C-]>
+
+" set wildcharm=<Tab>
+" set wildmenu
+" set wildmode=full
+" nnoremap <leader><Tab> :buffer<Space><Tab>
+
 nnoremap <Tab> :bnext!<CR>
 nnoremap <S-Tab> :bprevious!<CR>
 nnoremap <leader>x :bp\|bd #<CR>
